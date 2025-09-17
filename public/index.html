@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollabCode - Real-time Collaborative Editor</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-javascript.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Collab<span>Code</span></div>
+        <div class="connection-status">
+            <div class="status-dot" id="statusDot"></div>
+            <span id="statusText">Disconnected</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="editor-container">
+            <div class="editor-toolbar">
+                <select class="language-selector" id="languageSelector">
+                    <option value="javascript">JavaScript</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                </select>
+            </div>
+            <div id="editor" contenteditable="true" class="language-javascript"></div>
+        </div>
+
+        <div class="sidebar">
+            <h2>Collaborators</h2>
+            <ul class="user-list" id="userList">
+                <!-- Users will be added dynamically -->
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <div class="cursor-position">Ln 1, Col 1</div>
+        <button class="invite-btn" id="inviteButton">Invite Collaborators</button>
+    </footer>
+
+    <!-- Username Modal -->
+    <div id="usernameModal" class="modal">
+        <div class="modal-content">
+            <h2>Join Collaborative Editor</h2>
+            <div class="form-group">
+                <label for="usernameInput">Enter your username:</label>
+                <input type="text" id="usernameInput" placeholder="Your username" maxlength="20">
+            </div>
+            <button id="joinButton" class="join-btn">Join Room</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
